@@ -9,5 +9,5 @@ def addTask(title, description=None, due_date=None, deadline=None, children=None
     f = open(file_path, "wb")
     pickle.dump(task, f)
     f.close()
-    print(bc.col.OKGREEN + f"\nAdded: {title}\n" + bc.col.ENDC)
+    print(bc.col.OKGREEN + f"Added: {title}" + bc.col.ENDC)
     return task

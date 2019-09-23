@@ -6,4 +6,4 @@ import bcolors as bc
 def removeTask(title):
     file_path = f"/home/miguel/helix-todos/{title}.todo"
     os.remove(file_path)
-    print(bc.col.OKGREEN + f"\nRemoved: {title}\n" + bc.col.ENDC)
+    print(bc.col.OKGREEN + f"Removed: {title}" + bc.col.ENDC)
