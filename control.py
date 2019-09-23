@@ -1,4 +1,4 @@
-import os, pickle, add, remove
+import os, pickle, add, remove, tabulate
 
 def loadItems():
     items = []
@@ -23,7 +23,12 @@ def executeCommand(arr):
         showOverview(items)
 
 def showOverview(arr):
-    print("status" + " "*4 + "title" + " "*5 + "description")
-    print("-"*50)
+    table = []
     for i in arr:
-        print(i.state + " "*3 + i.title + " " * 5 + str(i.description))
+        row = []
+        row.append(i.state)
+        row.append(i.title)
+        row.append(i.description)
+        table.append(row)
+    
+    print("\n" + tabulate.tabulate(table, headers=["status", "title", "description"], tablefmt='orgtbl') + "\n")
