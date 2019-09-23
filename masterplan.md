@@ -28,20 +28,16 @@ This version of the masterplan was created on September 21st 2019, a few stylist
 
 #### Classes
 
-- checklist item1
-- project 2
-  - project 2 item 1
-
 - Task:
   - Title
-    - ID
-      - Optional:
-        - Description
-        - Date/time due (to remind)
-        - Deadline
-        - Children: list(Tasks, Projects)
-    - State (upcoming, due (actually right now), completed, canceled)
-      - If state == completed || canceled, then the date when it was ticked/scrubbed should be added as state_updated
+  - ID
+    - Optional:
+      - Description
+      - Date/time due (to remind)
+      - Deadline
+      - Children: list(Tasks, Projects)
+  - State (upcoming, due (actually right now), completed, canceled)
+    - If state == completed || canceled, then the date when it was ticked/scrubbed should be added as state_updated
 - Project
   - Title
   - ID
@@ -106,7 +102,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - masterplan.md
 - README.md
 - LICENSE
-- [help.py](#####help.py)
+- [helper.py](#####helper.py)
 - [main.py](#####main.py)
 - [add.py](#####add.py)
 - [remove.py](#####remove.py)
@@ -114,8 +110,9 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - [task.py](#####task.py)
 - [project.py](#####project.py)
 - [tick.py](#####tick.py)
+- [bcolors.py](#####bcolors.py)
 
-##### help.py
+##### helper.py
 
 ##### main.py
 
@@ -151,5 +148,9 @@ Functions:
   - Remove state_updated variable from item
 - cancel(item)
   - Add/change state_updated variable to/of item
+
+##### bcolors.py
+
+- easy access to colored prints in development
 
 ## (Maybe) webclient (no idea how to do that yet)
