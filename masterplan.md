@@ -103,7 +103,9 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 
 #### Files
 
+- masterplan.md
 - README.md
+- LICENSE
 - [help.py](#####help.py)
 - [main.py](#####main.py)
 - [add.py](#####add.py)
