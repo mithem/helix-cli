@@ -3,7 +3,7 @@ from projects import Project
 import add, remove, change, helper, sys, pickle, os, control
 import bcolors as bc
 
-items = control.loadItems()
+items = control.ItemHandler.loadItems()
 
 try:
     print(bc.col.OKGREEN + "\nStarted" + bc.col.ENDC)
