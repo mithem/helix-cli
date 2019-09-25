@@ -1,6 +1,8 @@
-import os, pickle, add, remove, tabulate, change
+import os, pickle, add, remove, tabulate, change, argparse
+from helper import Helper
 from tick import TickMachine
 from datetime import datetime
+import bcolors as bc
 
 class ItemHandler:
     def loadItems():
@@ -52,12 +54,15 @@ def executeCommand(arr):
             #elif arr[1].lower() == "change":
             #   if len(arr) 
 
-            items = ItemHandler.loadItems()
-                
+            items = ItemHandler.loadItems()  
     elif len(arr) == 1 and arr[0].lower() == "helix":
         items = ItemHandler.loadItems()
         showOverview(items)
-    if arr[0].lower() == "exit" or arr[0].lower() == "quit": exit(0)
+    elif len(arr) == 2 and arr[0].lower() == "helix" and arr[1].lower() == "help":
+        helper = Helper()
+        help(change.ItemChanger)
+    if arr[0].lower() == "exit" or arr[0].lower() == "quit": exitHelix(True)
+
 
 def showOverview(arr):
     table = []
@@ -72,3 +77,10 @@ def showOverview(arr):
 
 def getItemPath(title):
     return f"/home/miguel/helix-todos/{title}.todo"
+
+def exitHelix(really):
+    if really == True:
+        print(bc.col.OKBLUE + "\nExiting...\n" + bc.col.ENDC + bc.col.OKGREEN + "See you later Alligator!\n" + bc.col.ENDC)
+        exit(0)
+    else:
+        print(bc.col.WARNING + "\nYou nerd dude! Shame on you ;)\n" + bc.col.ENDC)

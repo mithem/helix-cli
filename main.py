@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from tasks import Task
 from projects import Project
 import add, remove, change, helper, sys, pickle, os, control
@@ -10,5 +11,4 @@ try:
     while True:
         control.executeCommand(input().split(" "))
 except KeyboardInterrupt:
-    print(bc.col.OKBLUE + "\nExiting...\n" + bc.col.ENDC)
-    exit(0)
+    control.exitHelix(True)
