@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
-from tasks import Task
-from projects import Project
-import add, remove, change, helper, sys, pickle, os, control
+from itemhandler import ItemHandler
+import control
 import bcolors as bc
-
-items = control.ItemHandler.loadItems()
+items = ItemHandler.loadItems()
 
 try:
     print(bc.col.OKGREEN + "\nStarted" + bc.col.ENDC)

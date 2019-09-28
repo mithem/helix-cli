@@ -12,7 +12,7 @@ This version of the masterplan was created on September 21st 2019, a few stylist
 
 - Python for CLI
 - HTML, CSS, JS, maybe PHP (please not) and probably SQL for the webapp (maybe react?)
-- Timeline: probably no larger scale one as it might be a larger project with lots of unknowns. Will try to organize everything in Things 3 (would really like to have a MacBook Pro 😅)
+- Timeline: probably no larger scale one as it might be a larger project with lots of unknowns. Will try to organize everything in Things 3 (would really like to have a MacBook Pro 😅) [Now have one 😀]
 - Note: I first want to build out the CLI completely, the webclient isn‘t necessary but would be an interesting choice for expansion
 
 ## Commandline interface (cli)
@@ -111,6 +111,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - [project.py](#####project.py)
 - [tick.py](#####tick.py)
 - [bcolors.py](#####bcolors.py)
+- [things.py](#####things.py)
 
 ##### helper.py
 
@@ -152,5 +153,10 @@ Functions:
 ##### bcolors.py
 
 - easy access to colored prints in development
+
+##### things.py
+
+- handle _helix things_ command
+- get items, convert them into a text file (as Things3 wants it) -> dump them
 
 ## (Maybe) webclient (no idea how to do that yet)

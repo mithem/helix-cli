@@ -1,4 +1,3 @@
-import control, change, main
 
 class Helper:
     def __init__(self):
