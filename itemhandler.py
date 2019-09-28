@@ -12,6 +12,23 @@ class ItemHandler:
                 f.close()
         return items
 
+    def getItems(title=None, description=None, due_date=None, deadline=None, state=None, strict_mode=False):
+        all_items = ItemHandler.loadItems()
+        queryItems = []
+        for i in all_items:
+            if (title != None) and (not strict_mode and title in i.title) or (strict_mode and str(i.title) == title):
+                queryItems.append(i)
+            if (description != None) and (not strict_mode and description in i.description) or (strict_mode and str(i.description) == description):
+                queryItems.append(i)
+            if (due_date != None) and (not strict_mode and due_date in i.due_date) or (strict_mode and str(i.due_date) == due_date):
+                queryItems.append(i)
+            if (deadline != None) and (not strict_mode and deadline in i.deadline) or (strict_mode and str(i.deadline) == deadline):
+                queryItems.append(i)
+            if (state != None) and (not strict_mode and state in i.state) or (strict_mode and str(i.state) == state):
+                queryItems.append(i)
+        return queryItems
+                
+
     def getProperty(item_title, property):
         items = ItemHandler.loadItems()
         item_titles = []
