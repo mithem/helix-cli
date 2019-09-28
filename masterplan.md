@@ -80,6 +80,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
     - -s [name]: select all tasks/projects with _name_
     - -i [id]: select all tasks/projects with _id_
   - changeParameters:
+    - -t [title]: new title of the task/project
     - -d [description]: description of the the task/project
     - -dt [date]: due date
     - -dl [date]: deadline
