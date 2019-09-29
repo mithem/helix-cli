@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 #! /usr/local/bin python3
 from itemhandler import ItemHandler
 import control, re
 import bcolors as bc
 
+=======
+from itemhandler import ItemHandler
+import control, re
+import bcolors as bc
+>>>>>>> parent of ce65975... messed up
 items = ItemHandler.loadItems()
 
 try:
@@ -17,4 +23,8 @@ try:
                 command.remove(i)
         control.executeCommand(command)
 except KeyboardInterrupt:
+<<<<<<< HEAD
     control.exitHelix(True)
+=======
+    control.exitHelix(True)
+>>>>>>> parent of ce65975... messed up

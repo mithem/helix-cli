@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import os
+=======
+import os, pickle
+from config import config
+>>>>>>> parent of ce65975... messed up
 
 class ItemHandler:
     def loadItems():
         items = []
+<<<<<<< HEAD
         for i in os.listdir("/home/miguel/helix-todos/"):
             f = open("/home/miguel/helix-todos/" + i, "rb")
             obj = pickle.load(f)
@@ -10,6 +16,33 @@ class ItemHandler:
             f.close()
         return items
     
+=======
+        for i in os.listdir(config.helixDir):
+            if i != "Things3-export" and i != ".DS_Store":
+                f = open(config.helixDir + i, "rb")
+                obj = pickle.load(f)
+                items.append(obj)
+                f.close()
+        return items
+
+    def getItems(title=None, description=None, due_date=None, deadline=None, state=None, strict_mode=False):
+        all_items = ItemHandler.loadItems()
+        queryItems = []
+        for i in all_items:
+            if (title != None) and (not strict_mode and title in i.title) or (strict_mode and str(i.title) == title):
+                queryItems.append(i)
+            if (description != None) and (not strict_mode and description in i.description) or (strict_mode and str(i.description) == description):
+                queryItems.append(i)
+            if (due_date != None) and (not strict_mode and due_date in i.due_date) or (strict_mode and str(i.due_date) == due_date):
+                queryItems.append(i)
+            if (deadline != None) and (not strict_mode and deadline in i.deadline) or (strict_mode and str(i.deadline) == deadline):
+                queryItems.append(i)
+            if (state != None) and (not strict_mode and state in i.state) or (strict_mode and str(i.state) == state):
+                queryItems.append(i)
+        return queryItems
+                
+
+>>>>>>> parent of ce65975... messed up
     def getProperty(item_title, property):
         items = ItemHandler.loadItems()
         item_titles = []
@@ -20,4 +53,8 @@ class ItemHandler:
         elif property == "state": return item.state
         elif property == "due_date": return item.due_date
         elif property == "deadline": return item.deadline
+<<<<<<< HEAD
         elif property == "children": return item.children
+=======
+        elif property == "children": return item.children
+>>>>>>> parent of ce65975... messed up
