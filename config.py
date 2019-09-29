@@ -1,2 +1,3 @@
 class config:
-    helixDir = "/Users/miguel/helix-todos/" #replace this with your favorite dir :)
+    helixDir = "/Users/miguel/helix-todos/" # replace this with your favorite dir :)
+    setupDir = "/usr/local/bin/" # I recommend this for Mac users

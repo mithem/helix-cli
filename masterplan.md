@@ -19,9 +19,9 @@ This version of the masterplan was created on September 21st 2019, a few stylist
 ### General
 
 - Data including tasks etc. will be stored in local files, cloud sync may be possible (necessary) for webapp.
-- The main.py script should be the entry point for helix and should deal with redirecting to different functions, which are outsourced in [different files](####Files)
+- The helix.py script should be the entry point for helix and should deal with redirecting to different functions, which are outsourced in [different files](####Files)
 - To save the files, I will probably be using the pickles module (specifically pickle.dump() and pickle.load())
-- For better performance, iI will be waiting for input in main.py after startup, so the instances of classes don‘t have to be loaded for every command
+- For better performance, iI will be waiting for input in helix.py after startup, so the instances of classes don‘t have to be loaded for every command
 
 ### Structure
 
@@ -79,7 +79,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - LICENSE
 - requirements.txt
 - [helper.py](#####helper.py)
-- [main.py](#####main.py)
+- [helix.py](#####helix.py)
 - [add.py](#####add.py)
 - [remove.py](#####remove.py)
 - [change.py](#####change.py)
@@ -92,7 +92,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 
 ##### helper.py
 
-##### main.py
+##### helix.py
 
 Handle args and call functions in other modules (depending on command)
 
