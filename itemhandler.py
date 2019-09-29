@@ -1,5 +1,7 @@
+import os
+
 class ItemHandler:
-    def loadItems(self):
+    def loadItems():
         items = []
         for i in os.listdir("/home/miguel/helix-todos/"):
             f = open("/home/miguel/helix-todos/" + i, "rb")
@@ -8,8 +10,8 @@ class ItemHandler:
             f.close()
         return items
     
-    def getProperty(self, item_title, property):
-        items = self.loadItems()
+    def getProperty(item_title, property):
+        items = ItemHandler.loadItems()
         item_titles = []
         for i in items:
             item_titles.append(i.title)
