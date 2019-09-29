@@ -11,3 +11,5 @@ class Item():
 
 class Task(Item):
     pass
+class Project(Item):
+    pass

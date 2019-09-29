@@ -9,8 +9,9 @@ This version of the masterplan was created on September 21st 2019, a few stylist
 - Source Control: git/GitHub
 - License: Lawyer, please!
 - Languages:
-  - Python for CLI
-  - HTML, CSS, JS, maybe PHP (please not) and probably SQL for the webapp (maybe react?)
+
+- Python for CLI
+- HTML, CSS, JS, maybe PHP (please not) and probably SQL for the webapp (maybe react?)
 - Timeline: probably no larger scale one as it might be a larger project with lots of unknowns. Will try to organize everything in Things 3 (would really like to have a MacBook Pro 😅) [Now have one 😀]
 - Note: I first want to build out the CLI completely, the webclient isn‘t necessary but would be an interesting choice for expansion
 
@@ -18,10 +19,10 @@ This version of the masterplan was created on September 21st 2019, a few stylist
 
 ### General
 
-- Data including tasks etc. will be stored in local files, cloud sync may be possible (necessary) for webapp.
+- Data including tasks/projects etc. will be stored in local files, cloud sync may be possible (necessary) for webapp.
 - The main.py script should be the entry point for helix and should deal with redirecting to different functions, which are outsourced in [different files](####Files)
-- To save the files, I will probably be using the pickles module (specifically pickle.dump() and pickle.load())
-- For better performance, iI will be waiting for input in main.py after startup, so the instances of classes don‘t have to be loaded for every command
+- To save the files, i will probably be using the pickles module (specifically pickle.dump() and pickle.load())
+- For better performance, i will be waiting for input in main.py after startup, so the instances of classes don‘t have to be loaded for every command
 
 ### Structure
 
@@ -84,6 +85,7 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - [remove.py](#####remove.py)
 - [change.py](#####change.py)
 - [task.py](#####task.py)
+- [project.py](#####project.py)
 - [tick.py](#####tick.py)
 - [bcolors.py](#####bcolors.py)
 - [things.py](#####things.py)
@@ -109,6 +111,10 @@ Handle args and call functions in other modules (depending on command)
 [see commands](####Commands)
 
 ##### task.py
+
+[see classes](####classes)
+
+##### project.py
 
 [see classes](####classes)
 
@@ -147,6 +153,6 @@ Functions:
 
 ##### config.py
 
-- holds directory for todos
+- holds directory for 
 
 ## (Maybe) webclient (no idea how to do that yet)
