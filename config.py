@@ -1,2 +1,2 @@
 class config:
-    helixDir = "/Users/miguel/helix-todos/"
+    helixDir = "/Users/user/helix-todos/" #replace this with your favorite dir :)

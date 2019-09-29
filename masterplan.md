@@ -35,22 +35,14 @@ This version of the masterplan was created on September 21st 2019, a few stylist
       - Description
       - Date/time due (to remind)
       - Deadline
-      - Children: list(Tasks, Projects)
+      - Children: list(Tasks)
   - State (upcoming, due (actually right now), completed, canceled)
     - If state == completed || canceled, then the date when it was ticked/scrubbed should be added as state_updated
-- Project
-  - Title
-  - ID
-    - Optional:
-      - Description
-      - Date/time due (to remind)
-      - Deadline
-      - Children: list(Tasks, Projects)
-    - State (upcoming, due (actually right now), completed, canceled)
+
 
 #### Commands
 
-It doesn‘t matter whether commands like "Helix add" are written like "hEliX aDd". The same rule applies for the user searching for a task/project by name; When adding Tasks/Projects the input IS case-sensitive.
+It doesn‘t matter whether commands like "Helix add" are written like "hEliX aDd". The same rule applies for the user searching for a task by name; When adding Tasks the input IS case-sensitive.
 
 - Helix
   - Helix: Show current status with due tasks, planned for today
@@ -58,51 +50,35 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
     - Helix -i [id]: search for task by id and show all hits
     - Helix -h: show help
 - Helix add
-  - Helix add -parameter [arg]: add task/project
-  - Parameters:
-    - -t [name]: add task with title of _name_
-    - -p [name] add project with title of _name_
-    - Optional parameters:
-      - -d [description]: description of the the task/project
+  - Helix add -parameter [arg]: add task
+    - parameters:
+      - -d [description]: description of the the task
       - -dt [date]: due date
       - -dl [date]: deadline
-      - -cn [name]: parent of the new task/project (can be either a task or project); string
-      - -ci [id]: parent of the new task/project (can be either a task or project); int
+      - -c [name]: parent of the new task (task (title))
     - Order of parameters shall not have an effect on execution
 - Helix rm
-  - Helix rm -parameter [arg]: remove a task/project
-  - Parameters:
-    - Helix rm -s [name]: remove all tasks/projects with _name_
-    - Helix rm -i [id]: remove all tasks/projects with _id_
+  - Helix rm [taskname]: remove a task
 - Helix change
-  - Helix change -selectiveParameter -changeParameters
-  - selectiveParameters:
-    - -s [name]: select all tasks/projects with _name_
-    - -i [id]: select all tasks/projects with _id_
-  - changeParameters:
-    - -t [title]: new title of the task/project
-    - -d [description]: description of the the task/project
+  - Helix change [taskname] -parameters
+  - parameters:
+    - -t [title]: new title of the task
+    - -d [description]: description of the the task
     - -dt [date]: due date
     - -dl [date]: deadline
-    - -cn [name]: parent of the task/project (can be either a task or project); string
-    - -ci [id]: parent of the task/project (can be either a task or project); int
+    - -c [name]: parent of the task (task)
   - Order of parameters shall not have an effect on execution
 - Helix tick
-  - Helix tick -[parameter] [identifier]
-  - Parameters:
-    - -s [name]: tick all tasks/projects by _name_
-    - -i [id]: tick task/project by _id_
+  - Helix tick [taskname]
 - Helix untick
-  - Helix untick -[parameter] [identifier]
-  - Parameters:
-    - -s [name]: untick all tasks/projects by _name_
-    - -i [id]: untick task/project by _id_
+  - Helix untick [taskname]
 
 #### Files
 
 - masterplan.md
 - README.md
 - LICENSE
+- requirements.txt
 - [helper.py](#####helper.py)
 - [main.py](#####main.py)
 - [add.py](#####add.py)
@@ -113,6 +89,8 @@ It doesn‘t matter whether commands like "Helix add" are written like "hEliX aD
 - [tick.py](#####tick.py)
 - [bcolors.py](#####bcolors.py)
 - [things.py](#####things.py)
+- [itemhandler.py](#####itemhandler.py)
+- [statehandler.py](#####statehandler.py)
 
 ##### helper.py
 
@@ -159,5 +137,22 @@ Functions:
 
 - handle _helix things_ command
 - get items, convert them into a text file (as Things3 wants it) -> dump them
+
+##### itemhandler.py
+
+- handle items:
+  - load all items
+  - get items with query (title, description etc)
+  - get property of specific item (identified by title)
+
+##### statehandler.py
+
+- utilities for task states:
+  - get date string of given date
+  - get state most appropriate (given due_date etc)
+
+##### config.py
+
+- holds directory for 
 
 ## (Maybe) webclient (no idea how to do that yet)
