@@ -4,19 +4,19 @@ from config import config
 from bcolors import col
 
 class Things3Helper:
-    def export2Things3(taskObjs):
+    def export2Things3(self, taskObjs):
         # append all task names to link, so Things3 knows
         # which tasks (more than one) to add
         for i in taskObjs:
             if taskObjs == None: print(col.FAIL + "Failed exporting to Things. Things3Helper didn't receive appropriate data." + col.ENDC)
             link = "things:///add?title="
-            link += str(i.title)
+            link += str(i.title).replace(" ", "%20").replace(":", "%3A").replace("'", "").replace('"', "")
             if i.description != None:
-                link += "&notes=" + str(i.description).replace(" ", "%20").replace("'", "").replace('"', "")
+                link += "&notes=" + str(i.description).replace(" ", "%20").replace(":", "%3A").replace("'", "").replace('"', "")
             if i.due_date != None:
                 link += "&when=" + str(i.due_date).replace(" ", "%20").replace(":", "%3A").replace("'", "").replace('"', "")
             if i.deadline != None:
-                link += "&deadline=" + str(i.deadline).replace(" ", "%20").replace("'", "").replace('"', "")
+                link += "&deadline=" + str(i.deadline).replace(" ", "%20").replace(":", "%3A").replace("'", "").replace('"', "")
             if i.children != []:
                 link += "&checklist-items="
                 subtask_titles = []

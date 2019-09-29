@@ -66,26 +66,26 @@ def executeCommand(arr):
             elif arr[1].lower() == "untick":
                 TickMachine.untick(arr[2])
             elif arr[1].lower() == "change":
-                emptyParameters = {
-                    "description": None,
-                    "due_date": None,
-                    "deadline": None,
-                    "children": [],
-                    "state": "upcoming",
-                    "completion_date": None
+                prevParameters = {
+                    "description": ItemHandler.getProperty(arr[2], "description"),
+                    "due_date": ItemHandler.getProperty(arr[2], "due_date"),
+                    "deadline": ItemHandler.getProperty(arr[2], "deadline"),
+                    "children": ItemHandler.getProperty(arr[2], "children"),
+                    "state": ItemHandler.getProperty(arr[2], "state"),
+                    "completion_date": ItemHandler.getProperty(arr[2], "completion_date"),
                 }
-                paras = {**emptyParameters, **parseArguments(arr)}
+                paras = {**prevParameters, **parseArguments(arr)}
                 change.ItemChanger.changeTask(arr[2], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], False)
                 print(bc.col.OKGREEN + "Changed task: " + arr[2] + bc.col.ENDC)
             elif arr[1].lower() == "things":
                 if arr[2] == "*":
-                    Things3Helper.export2Things3(ItemHandler.loadItems())
+                    Things3Helper.export2Things3(Things3Helper, ItemHandler.loadItems())
                 else:
                     todos_to_export = []
                     for i in range(2, len(arr)):
                         for j in ItemHandler.getItems(title=arr[i]):
                             todos_to_export.append(j)
-                    Things3Helper.export2Things3(todos_to_export)
+                    Things3Helper.export2Things3(Things3Helper, todos_to_export)
             items = ItemHandler.loadItems()
     elif len(arr) == 1 and arr[0].lower() == "helix":
         items = ItemHandler.loadItems()
@@ -109,7 +109,6 @@ def showOverview(arr):
         else: row.append("None")
         if i.children != []:
             childrenView = []
-            print(type(i.children))
             for j in i.children:
                 childrenView.append(j.title)
             row.append(tabulate.tabulate(childrenView))
