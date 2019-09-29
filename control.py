@@ -75,16 +75,21 @@ def executeCommand(arr):
                         "state": ItemHandler.getProperty(arr[2], "state"),
                         "completion_date": ItemHandler.getProperty(arr[2], "completion_date"),
                     }
+                    newParamters = {}
+                    newParamters["children"] = []
                     newParamters = parseArguments(arr)
                     paras = {**prevParameters, **newParamters}
-                    for i in range(len(prevParameters["children"]) + len(newParamters["children"])):
-                        try:
-                            if not prevParameters["children"][i] in paras["children"]:
-                                paras["children"].append(prevParameters["children"][i])
-                            if not newParamters["children"][i] in paras["children"]:
-                                paras["children"].append(newParamters["children"][i])
-                        except:
-                            pass
+                    try:
+                        for i in range(len(prevParameters["children"]) + len(newParamters["children"])):
+                            try:
+                                if not prevParameters["children"][i] in paras["children"]:
+                                    paras["children"].append(prevParameters["children"][i])
+                                if not newParamters["children"][i] in paras["children"]:
+                                    paras["children"].append(newParamters["children"][i])
+                            except:
+                                pass
+                    except KeyError:
+                        pass
                     if change.ItemChanger.changeTask(arr[2], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], False):
                         print(bc.col.OKGREEN + "Changed task: " + arr[2] + bc.col.ENDC)
                     else:
@@ -99,7 +104,7 @@ def executeCommand(arr):
                                 todos_to_export.append(j)
                         Things3Helper.export2Things3(Things3Helper, todos_to_export)
                 items = ItemHandler.loadItems()
-        elif len(arr) == 1 and arr[0].lower() == "helix":
+        elif len(arr) == 1 and "helix" in arr[0].lower():
             items = ItemHandler.loadItems()
             showOverview(items)
         if len(arr) >= 2 and arr[0].lower() == "helix" and arr[1].lower() == "help":
@@ -109,7 +114,8 @@ def executeCommand(arr):
             except IndexError:
                 help()
         if arr[0].lower() == "exit" or arr[0].lower() == "quit": exitHelix(True)
-    except:
+    except Exception as e:
+        print(bc.col.FAIL + "Error while executing command. Error: " + str(e) + bc.col.ENDC)
         return False
 
 def showOverview(arr):
@@ -153,5 +159,6 @@ def exitHelix(really):
     if really == True:
         print(bc.col.OKBLUE + "\nExiting...\n" + bc.col.ENDC + bc.col.OKGREEN + "See you later Alligator!\n" + bc.col.ENDC)
         exit(0)
+        quit(0)
     else:
         print(bc.col.WARNING + "\nYou nerd dude! Shame on you ;)\n" + bc.col.ENDC)
