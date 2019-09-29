@@ -111,8 +111,6 @@ def executeCommand(arr):
         if arr[0].lower() == "exit" or arr[0].lower() == "quit": exitHelix(True)
     except:
         return False
->>>>>>> parent of ce65975... messed up
-
 
 def showOverview(arr):
     table = []

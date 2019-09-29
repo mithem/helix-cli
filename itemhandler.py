@@ -1,22 +1,9 @@
-<<<<<<< HEAD
-import os
-=======
 import os, pickle
 from config import config
->>>>>>> parent of ce65975... messed up
 
 class ItemHandler:
     def loadItems():
         items = []
-<<<<<<< HEAD
-        for i in os.listdir("/home/miguel/helix-todos/"):
-            f = open("/home/miguel/helix-todos/" + i, "rb")
-            obj = pickle.load(f)
-            items.append(obj)
-            f.close()
-        return items
-    
-=======
         for i in os.listdir(config.helixDir):
             if i != "Things3-export" and i != ".DS_Store":
                 f = open(config.helixDir + i, "rb")
@@ -42,7 +29,6 @@ class ItemHandler:
         return queryItems
                 
 
->>>>>>> parent of ce65975... messed up
     def getProperty(item_title, property):
         items = ItemHandler.loadItems()
         item_titles = []
@@ -53,8 +39,4 @@ class ItemHandler:
         elif property == "state": return item.state
         elif property == "due_date": return item.due_date
         elif property == "deadline": return item.deadline
-<<<<<<< HEAD
         elif property == "children": return item.children
-=======
-        elif property == "children": return item.children
->>>>>>> parent of ce65975... messed up

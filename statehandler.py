@@ -11,5 +11,5 @@ class StateHandler:
             return "upcoming"
         elif ItemHandler.getProperty(title, "deadline") == None:
             return "upcoming"
-        elif ItemHandler.getProperty(title, "deadline") == self.getDateString(datetime.now()):
+        elif ItemHandler.getProperty(title, "deadline") == StateHandler.getDateString(datetime.now()):
             return "urgent"
