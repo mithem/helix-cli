@@ -23,7 +23,6 @@ if answer.lower() == "y":
             "config.py",
             "control.py",
             "helix.py",
-            "helper.py",
             "itemhandler.py",
             "items.py",
             "remove.py",

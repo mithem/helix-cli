@@ -14,7 +14,6 @@ import shutil
 from things import Things3Helper
 from itemhandler import ItemHandler
 from config import config
-from helper import Helper
 import bcolors as bc
 
 
@@ -58,78 +57,76 @@ def executeCommand(arr):
     calls add, remove, change, help, tick, untick, things3-export and the exit function
     """
     try:
-        if len(arr) >= 3:
-            if arr[0].lower() == "helix":
-                if arr[1].lower() == "add":
-                    emptyParameters = {
-                        "description": None,
-                        "due_date": None,
-                        "deadline": None,
-                        "children": [],
-                        "state": "upcoming",
-                        "completion_date": None
-                    }
-                    paras = {**emptyParameters, **parseArguments(arr)}
-                    add.addTask(arr[2], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], True)
-                elif arr[1].lower() == "rm":
-                    if arr[2] == "*":
-                        for i in ItemHandler.loadItems():
-                            remove.removeTask(i.title)
-                    else:
-                        for i in range(2, len(arr)):
-                            remove.removeTask(arr[i])
-                elif arr[1].lower() == "tick":
-                    TickMachine.tick(arr[2])
-                elif arr[1].lower() == "untick":
-                    TickMachine.untick(arr[2])
-                elif arr[1].lower() == "change":
-                    prevParameters = {
-                        "description": ItemHandler.getProperty(arr[2], "description"),
-                        "due_date": ItemHandler.getProperty(arr[2], "due_date"),
-                        "deadline": ItemHandler.getProperty(arr[2], "deadline"),
-                        "children": ItemHandler.getProperty(arr[2], "children"),
-                        "state": ItemHandler.getProperty(arr[2], "state"),
-                        "completion_date": ItemHandler.getProperty(arr[2], "completion_date"),
-                    }
-                    newParamters = {}
-                    newParamters["children"] = []
-                    newParamters = parseArguments(arr)
-                    paras = {**prevParameters, **newParamters}
-                    try:
-                        for i in range(len(prevParameters["children"]) + len(newParamters["children"])):
-                            try:
-                                if not prevParameters["children"][i] in paras["children"]:
-                                    paras["children"].append(prevParameters["children"][i])
-                                if not newParamters["children"][i] in paras["children"]:
-                                    paras["children"].append(newParamters["children"][i])
-                            except:
-                                pass
-                    except KeyError:
-                        pass
-                    if change.ItemChanger.changeTask(arr[2], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], False):
-                        print(bc.col.OKGREEN + "Changed task: " + arr[2] + bc.col.ENDC)
-                    else:
-                        print(bc.col.WARNING + "Error while changing task. Some attributes may have changes though" + bc.col.ENDC)
-                elif arr[1].lower() == "things":
-                    if arr[2] == "*":
-                        Things3Helper.export2Things3(Things3Helper, ItemHandler.loadItems())
-                    else:
-                        todos_to_export = []
-                        for i in range(2, len(arr)):
-                            for j in ItemHandler.getItems(title=arr[i]):
-                                todos_to_export.append(j)
-                        Things3Helper.export2Things3(Things3Helper, todos_to_export)
-                items = ItemHandler.loadItems()
+        if len(arr) >= 2:
+            if arr[0].lower() == "add":
+                emptyParameters = {
+                    "description": None,
+                    "due_date": None,
+                    "deadline": None,
+                    "children": [],
+                    "state": "upcoming",
+                    "completion_date": None
+                }
+                paras = {**emptyParameters, **parseArguments(arr)}
+                add.addTask(arr[1], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], True)
+            elif arr[0].lower() == "rm":
+                if arr[1] == "*":
+                    for i in ItemHandler.loadItems():
+                        remove.removeTask(i.title)
+                else:
+                    for i in range(2, len(arr)):
+                        remove.removeTask(arr[i])
+            elif arr[0].lower() == "tick":
+                TickMachine.tick(arr[1])
+            elif arr[0].lower() == "untick":
+                TickMachine.untick(arr[1])
+            elif arr[0].lower() == "change":
+                prevParameters = {
+                    "description": ItemHandler.getProperty(arr[1], "description"),
+                    "due_date": ItemHandler.getProperty(arr[1], "due_date"),
+                    "deadline": ItemHandler.getProperty(arr[1], "deadline"),
+                    "children": ItemHandler.getProperty(arr[1], "children"),
+                    "state": ItemHandler.getProperty(arr[1], "state"),
+                    "completion_date": ItemHandler.getProperty(arr[1], "completion_date"),
+                }
+                newParamters = {}
+                newParamters["children"] = []
+                newParamters = parseArguments(arr)
+                paras = {**prevParameters, **newParamters}
+                try:
+                    for i in range(len(prevParameters["children"]) + len(newParamters["children"])):
+                        try:
+                            if not prevParameters["children"][i] in paras["children"]:
+                                paras["children"].append(prevParameters["children"][i])
+                            if not newParamters["children"][i] in paras["children"]:
+                                paras["children"].append(newParamters["children"][i])
+                        except:
+                            pass
+                except KeyError:
+                    pass
+                if change.ItemChanger.changeTask(arr[1], paras["description"], paras["due_date"], paras["deadline"], paras["children"], paras["state"], paras["completion_date"], False):
+                    print(bc.col.OKGREEN + "Changed task: " + arr[1] + bc.col.ENDC)
+                else:
+                    print(bc.col.WARNING + "Error while changing task. Some attributes may have changes though" + bc.col.ENDC)
+            elif arr[0].lower() == "things":
+                if arr[1] == "*":
+                    Things3Helper.export2Things3(Things3Helper, ItemHandler.loadItems())
+                else:
+                    todos_to_export = []
+                    for i in range(2, len(arr)):
+                        for j in ItemHandler.getItems(title=arr[i]):
+                            todos_to_export.append(j)
+                    Things3Helper.export2Things3(Things3Helper, todos_to_export)
+            items = ItemHandler.loadItems()
         elif len(arr) == 1 and "helix" in arr[0].lower():
             items = ItemHandler.loadItems()
             showOverview(items)
-        if len(arr) >= 2 and arr[0].lower() == "helix" and arr[1].lower() == "help":
-            Helper()
+        if len(arr) >= 2 and arr[0].lower() == "helix" and arr[0].lower() == "help":
             try:
-                help(arr[2])
+                help(arr[1])
             except IndexError:
-                help()
-        if arr[0].lower() == "exit" or arr[0].lower() == "quit": exitHelix(True)
+                print("For usage instructions see USAGE.md")
+        if arr[0].lower() == "exit" or arr[0].lower() == "quit" or arr[0].lower() == "bye": exitHelix(True)
     except Exception as e:
         print(bc.col.FAIL + "Error while executing command. Error: " + str(e) + bc.col.ENDC)
         return False
@@ -157,7 +154,7 @@ def showOverview(arr):
         if i.deadline != None: row.append(i.deadline)
         else: row.append("None")
         table.append(row)
-    print("\n" + tabulate.tabulate(table, headers=["status", "title", "description", "children", "due date", "deadline"], tablefmt='orgtbl') + "\n")
+    print("\n" + tabulate.tabulate(table, headers=["status", "title", "description", "subtasks", "due date", "deadline"], tablefmt='orgtbl') + "\n")
 
 def getItemPath(title):
     """returns the file path of the task"""
