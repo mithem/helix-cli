@@ -55,7 +55,7 @@ Unticks / unchecks specified item
 ### things
 things [identifier]
 
-exports all specified items to Things3
+exports all specified items to Things3. You can also add mutliple titles as identifier
 
 identifiers:
 - *: all tasks

@@ -113,10 +113,13 @@ def executeCommand(arr):
                     Things3Helper.export2Things3(Things3Helper, ItemHandler.loadItems())
                 else:
                     todos_to_export = []
-                    for i in range(2, len(arr)):
+                    for i in range(1, len(arr)):
                         for j in ItemHandler.getItems(title=arr[i]):
                             todos_to_export.append(j)
-                    Things3Helper.export2Things3(Things3Helper, todos_to_export)
+                    if todos_to_export != []:
+                        Things3Helper.export2Things3(Things3Helper, todos_to_export)
+                    else:
+                        print(bc.col.WARNING + "No tasks found. Please make sure the name is valid or try again with * as the selector")
             items = ItemHandler.loadItems()
         elif len(arr) == 1 and "helix" in arr[0].lower():
             items = ItemHandler.loadItems()
