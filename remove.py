@@ -3,6 +3,7 @@ from config import config
 import bcolors as bc
 
 def removeTask(title, readback=True):
+    """removes specified task from disk"""
     file_path = f"{config.helixDir}{title}.todo"
     try:
         os.remove(file_path)

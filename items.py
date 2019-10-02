@@ -10,4 +10,5 @@ class Item():
         self.completion_date = completion_date
 
 class Task(Item):
+    """The class of an task with attributes (center of whole script)"""
     pass

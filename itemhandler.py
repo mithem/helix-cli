@@ -1,8 +1,14 @@
+"""Handles items
+"""
+
 import os, pickle
 from config import config
 
 class ItemHandler:
+    """utilities for handling items
+    """
     def loadItems():
+        """returns all tasks saved locally on disk"""
         items = []
         for i in os.listdir(config.helixDir):
             if i != "Things3-export" and i != ".DS_Store":
@@ -13,6 +19,7 @@ class ItemHandler:
         return items
 
     def getItems(title=None, description=None, due_date=None, deadline=None, state=None, strict_mode=False):
+        """returns all items matching a certain query"""
         all_items = ItemHandler.loadItems()
         queryItems = []
         for i in all_items:
@@ -30,6 +37,7 @@ class ItemHandler:
                 
 
     def getProperty(item_title, property):
+        """returns a certain property of a certain item"""
         items = ItemHandler.loadItems()
         item_titles = []
         for i in items:

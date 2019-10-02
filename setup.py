@@ -1,3 +1,6 @@
+"""The script for settings up the environment (optionally)
+"""
+
 import os, config, shutil
 from bcolors import col
 

@@ -1,3 +1,9 @@
+"""Handles most (important) stuff
+
+Gets command from helix.py, parses arguments, calls appropriate methods corresponding to command.
+Also includes small utulities.
+"""
+
 from tick import TickMachine
 import add
 import remove
@@ -13,6 +19,12 @@ import bcolors as bc
 
 
 def parseArguments(args):
+    """parses arguments
+
+    Returns a dictionary with arguments as keys and parameters (values) as values
+    Example: -d test -> 'description': 'test'
+    """
+
     try:
         arguments = {}
         for i in args:
@@ -41,6 +53,10 @@ def parseArguments(args):
         raise e
 
 def executeCommand(arr):
+    """handles command execution
+
+    calls add, remove, change, help, tick, untick, things3-export and the exit function
+    """
     try:
         if len(arr) >= 3:
             if arr[0].lower() == "helix":
@@ -119,6 +135,7 @@ def executeCommand(arr):
         return False
 
 def showOverview(arr):
+    """displays list of tasks using tabulate"""
     table = []
     for i in arr:
         row = []
@@ -143,9 +160,11 @@ def showOverview(arr):
     print("\n" + tabulate.tabulate(table, headers=["status", "title", "description", "children", "due date", "deadline"], tablefmt='orgtbl') + "\n")
 
 def getItemPath(title):
+    """returns the file path of the task"""
     return f"{config.helixDir}{title}.todo"
 
 def getItemObject(title):
+    """returns the object of specified task"""
     try:
         f = open(getItemPath(title), "rb")
     except FileNotFoundError:
@@ -156,6 +175,7 @@ def getItemObject(title):
     return obj
 
 def exitHelix(really):
+    """exits the program"""
     if really == True:
         print(bc.col.OKBLUE + "\nExiting...\n" + bc.col.ENDC + bc.col.OKGREEN + "See you later Alligator!\n" + bc.col.ENDC)
         exit(0)

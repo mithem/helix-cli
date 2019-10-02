@@ -5,6 +5,7 @@ from bcolors import col
 
 class Things3Helper:
     def export2Things3(self, taskObjs):
+        """exports specified tasks to Things3 for Mac"""
         # append all task names to link, so Things3 knows
         # which tasks (more than one) to add
         for i in taskObjs:

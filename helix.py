@@ -1,3 +1,9 @@
+"""helix-cli entry script
+
+This script handles the loop of parsing commands and executing them.
+Usage: helix help
+"""
+
 from itemhandler import ItemHandler
 import control, re
 import bcolors as bc

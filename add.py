@@ -4,6 +4,7 @@ import bcolors as bc
 from itemhandler import ItemHandler
 
 def addTask(title, description=None, due_date=None, deadline=None, children=[], state="upcoming", completion_date=None, readback=True):
+    """writes a new file to disk"""
     new_children = []
     response_code = 0
     for i in children:

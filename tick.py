@@ -3,7 +3,9 @@ import bcolors as bc
 from statehandler import StateHandler
 
 class TickMachine:
+    """handles (un)ticking of tasks"""
     def tick(title):
+        """ticks a task"""
         description = control.ItemHandler.getProperty(title, "description")
         due_date = control.ItemHandler.getProperty(title, "due_date")
         deadline = control.ItemHandler.getProperty(title, "deadline")
@@ -13,6 +15,7 @@ class TickMachine:
         print(bc.col.OKGREEN + f"Ticked: {title}" + bc.col.ENDC)
     
     def untick(title):
+        """unticks a task"""
         description = control.ItemHandler.getProperty(title, "description")
         due_date = control.ItemHandler.getProperty(title, "due_date")
         deadline = control.ItemHandler.getProperty(title, "deadline")
